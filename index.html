@@ -1,0 +1,173 @@
+<!DOCTYPE html> <html lang="ro"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>AutoParts - Magazin Piese Auto</title> <link rel="stylesheet" href="style.css"> </head> <body> <header class="header"> <div class="logo"> <span>⚙</span> AutoParts </div>
+<nav>
+    <a href="#">Acasă</a>
+    <a href="#">Piese auto</a>
+    <a href="#">Categorii</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="cart">
+    🛒 Coș
+</div>
+
+</header> <section class="hero"> <div class="hero-content"> <p class="subtitle">MAGAZIN DE PIESE AUTO</p> <h1>Piese potrivite pentru<br><span>mașina ta.</span></h1> <p> Găsește rapid piese pentru motor, caroserie și direcție. </p>
+    <form class="search-form">
+        <input
+            type="text"
+            name="cautare"
+            placeholder="Caută o piesă, ex. bujie..."
+        >
+        <button type="submit">Caută</button>
+    </form>
+</div>
+
+</section> <main class="container">
+<section class="add-panel">
+    <div class="section-title">
+        <div>
+            <p class="small-title">GESTIONEAZĂ PRODUSELE</p>
+            <h2>Adaugă o piesă</h2>
+        </div>
+        <span class="number">01</span>
+    </div>
+
+    <form class="item-form">
+
+        <div class="form-group">
+            <label for="denumire">Denumire piesă</label>
+            <input
+                id="denumire"
+                type="text"
+                name="denumire"
+                maxlength="100"
+                placeholder="Ex: Filtru de ulei"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="eticheta">Tip piesă</label>
+            <select id="eticheta" name="eticheta">
+                <option value="OEM">OEM</option>
+                <option value="OE">OE</option>
+                <option value="SH">SH</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="categorie">Categorie</label>
+            <select id="categorie" name="categorie">
+                <option value="motor">Motor</option>
+                <option value="caroserie">Caroserie</option>
+                <option value="directie">Direcție</option>
+            </select>
+        </div>
+
+        <button class="add-button" type="submit">
+            + Adaugă piesa
+        </button>
+
+    </form>
+</section>
+
+<section class="products-panel">
+
+    <div class="products-header">
+        <div>
+            <p class="small-title">CATALOG</p>
+            <h2>Piese disponibile</h2>
+        </div>
+
+        <div class="counter">
+            <strong>3</strong>
+            <span>produse</span>
+        </div>
+    </div>
+
+    <div class="product-list">
+
+        <article class="product-card">
+
+            <div class="product-icon">
+                ⚙️
+            </div>
+
+            <div class="product-info">
+                <div class="product-top">
+                    <span class="badge badge-oem">OEM</span>
+                    <span class="stock">● În stoc</span>
+                </div>
+
+                <h3>Braț suspensie</h3>
+
+                <p class="category">
+                    Direcție
+                </p>
+
+                <div class="product-bottom">
+                    <strong>Direcție</strong>
+                    <button>Detalii →</button>
+                </div>
+            </div>
+
+        </article>
+
+
+        <article class="product-card completed">
+
+            <div class="product-icon">
+                🔥
+            </div>
+
+            <div class="product-info">
+                <div class="product-top">
+                    <span class="badge badge-oe">OE</span>
+                    <span class="finished">✓ Finalizat</span>
+                </div>
+
+                <h3>Bujie</h3>
+
+                <p class="category">
+                    Motor
+                </p>
+
+                <div class="product-bottom">
+                    <strong>Motor</strong>
+                    <button>Detalii →</button>
+                </div>
+            </div>
+
+        </article>
+
+
+        <article class="product-card">
+
+            <div class="product-icon">
+                🚗
+            </div>
+
+            <div class="product-info">
+                <div class="product-top">
+                    <span class="badge badge-sh">SH</span>
+                    <span class="stock">● În stoc</span>
+                </div>
+
+                <h3>Aripă față</h3>
+
+                <p class="category">
+                    Caroserie
+                </p>
+
+                <div class="product-bottom">
+                    <strong>Caroserie</strong>
+                    <button>Detalii →</button>
+                </div>
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+</main> <footer> <p>© 2026 AutoParts — Proiect Tehnologii Web</p> </footer> </body> </html>
