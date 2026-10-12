@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AutoParts - Magazin Piese Auto</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Antetul superior -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">⚙️</span> AutoParts
+            </div>
+            <nav class="nav-links">
+                <a href="#">Acasă</a>
+                <a href="#">Piese auto</a>
+                <a href="#">Categorii</a>
+                <a href="#">Contact</a>
+            </nav>
+            <div class="nav-action">
+                <button class="cart-btn">🛒 Coș</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bannerul principal -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <span class="hero-subtitle">MAGAZIN DE PIESE AUTO</span>
+            <h1>Piese potrivite pentru <span class="highlight-text">mașina ta.</span></h1>
+            <p>Găsește rapid piese pentru motor, caroserie și direcție.</p>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Caută o piesă, ex. bujie..." />
+                <button type="button">Caută</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conținutul principal -->
+    <main class="container">
+        <!-- Panoul de adăugare piesă -->
+        <section class="panel">
+            <div class="panel-header-top">
+                <span class="panel-tag">GESTIONEAZĂ PRODUSELE</span>
+                <span class="step-number">01</span>
+            </div>
+            <h2>Adaugă o piesă</h2>
+            <form class="item-form">
+                <label>Denumire piesă 
+                    <input type="text" name="titlu" placeholder="Ex: Filtru de ulei" />
+                </label>
+                <label>Tip piesă
+                    <select name="eticheta">
+                        <option value="OEM">OEM</option>
+                        <option value="OE">OE</option>
+                        <option value="Aftermarket">Aftermarket</option>
+                    </select>
+                </label>
+                <label>Categorie
+                    <select name="categorie">
+                        <option value="motor">Motor</option>
+                        <option value="directie">Direcție</option>
+                        <option value="franare">Frânare</option>
+                    </select>
+                </label>
+                <button type="submit" class="submit-btn">Adaugă</button>
+            </form>
+        </section>
+
+        <!-- Panoul cu lista de produse / catalog -->
+        <section class="panel">
+            <div class="panel-header-top">
+                <span class="panel-tag">CATALOG</span>
+                <span class="counter-badge">3 produse</span>
+            </div>
+            <h2>Piese disponibile</h2>
+            
+            <ul class="item-list">
+                <li class="item-card">
+                    <div>
+                        <h3>Braț suspensie</h3>
+                        <span class="badge badge-oem">OEM</span>
+                    </div>
+                    <span class="status-stock">În stoc</span>
+                </li>
+
+                <li class="item-card">
+                    <div>
+                        <h3>Bujie</h3>
+                        <span class="badge badge-oe">OE</span>
+                    </div>
+                    <span class="status-stock">În stoc</span>
+                </li>
+
+                <li class="item-card done">
+                    <div>
+                        <h3>Filtru ulei</h3>
+                        <span class="badge badge-aftermarket">Aftermarket</span>
+                    </div>
+                    <span class="status-done">Finalizat</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>Proiect Tehnologii Web &copy; 2026 - Magazin Piese Auto</p>
+    </footer>
+
+    <script src="piese.js"></script>
+</body>
+</html>
