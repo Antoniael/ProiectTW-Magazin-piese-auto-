@@ -65,3 +65,49 @@ O aplicație web pentru gestionarea inventarului de piese auto, destinată clien
 | S2-R5 | Array-ul original rămâne neschimbat după adăugare | piese.js | rândul corespunzător din consolă |
 | S2-R6 | Secțiunea Etapa 2 în README + Jurnalul AI | README.md & ai-log/etapa-02.md | citire |
 | S2-R7 | Commit-ul „Stage 2” publicat pe GitHub | Istoricul de commit-uri | istoricul git |
+
+## Modelul de date
+
+| Câmp | Tip | Note |
+| :--- | :--- | :--- |
+| id | număr | unic, generat automat |
+| titlu | text | obligatoriu, max 100 caractere (denumirea piesei) |
+| inStoc | boolean | starea piesei (în stoc / indisponibil), valoare implicită true |
+| tip | valori fixe | `motor`, `franare`, `suspensie`, `caroserie` |
+| utilizator | relație | proprietarul sau gestionarul piesei (din Etapa 11) |
+
+### Date de test (folosite în aplicație):
+1. Plăcuțe frână față, în stoc, franare
+2. Filtru ulei motor, în stoc, motor
+3. Amortizor spate, indisponibil, suspensie
+
+---
+
+## Cum se rulează
+1. Deschide un terminal în folderul `frontend/`.
+2. Instalează dependențele (dacă nu ai făcut-o deja):
+   ```bash
+   npm install
+
+## Etapa 4: Componente construite din date
+Lista este desenată integral din date, prin două componente React:
+- `PiesaList` primește întregul array de piese și randează câte un card pentru fiecare element (sau un mesaj explicit dacă lista este goală)
+- `PiesaCard` primește un singur obiect prin `props` și îi afișează titlul, categoria și starea stocului
+
+## Stadiul proiectului
+- [x] Etapa 1: Mockup static în HTML și CSS
+- [x] Etapa 2: Logica pe date în JavaScript
+- [x] Etapa 3: Inițializarea proiectului React (Vite)
+- [x] Etapa 4: Componente construite din date
+- [ ] Etapa 5: Stare locală și evenimente
+
+### Tabel de verificare - Etapa 4
+| ID | Cerință | Unde se verifică | Cum se verifică |
+| :--- | :--- | :--- | :--- |
+| S4-R1 | 2+ componente în src/components/ | frontend/src/components/ | deschidere folder |
+| S4-R2 | Cardul primește datele prin props | PiesaCard.jsx | citire cod |
+| S4-R3 | map + key={id}, fără avertismente în consolă | PiesaList.jsx | F12, Console |
+| S4-R4 | Mesaj pentru lista goală | PiesaList.jsx | setare array la `[]` |
+| S4-R5 | Starea modifică aspectul cardului | PiesaCard.jsx | modificare flag `inStoc` |
+| S4-R6 | Secțiunea Etapa 4 în README + Jurnalul AI | README.md, ai-log/etapa-04.md | citire |
+| S4-R7 | Commit-ul „Stage 4” publicat pe GitHub | Istoricul de commit-uri | istoricul git |
