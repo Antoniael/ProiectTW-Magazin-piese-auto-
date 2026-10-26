@@ -1,184 +1,984 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+* {
+  box-sizing: border-box;
+}
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+:root {
+  /* Paleta principală - Stil Lila & Modern E-Commerce */
+  --bg: #fcf8fc;
+  --card: #ffffff;
+  --text: #2d2640;
+  --muted: #8e7a8e;
+  --accent: #C8A2C8;        /* Nuanța lila originală din proiect */
+  --accent-dark: #9b6b9b;
+  --accent-soft: #f8f1f8;
+  --accent-border: #e6d0e6;
+  --border: #e6d8e6;
+  
+  --topbar-bg: #120e1c;
+  --header-bg: #1a1625;
+  --nav-bg: #261b36;
+  --header-text: #ffffff;
+  
+  --shadow: 0 4px 20px rgba(155, 107, 155, 0.08);
+  --shadow-hover: 0 8px 26px rgba(155, 107, 155, 0.16);
+
+  /* Categorii de piese auto */
+  --badge-franare: #b052b3;
+  --badge-motor: #2563eb;
+  --badge-suspensie: #059669;
+  --badge-caroserie: #d97706;
+}
+
+/* Suport Tema Întunecată (Dark Mode) - automată prin preferința sistemului */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #110c1d;
+    --card: #1c152d;
+    --text: #f3e8ff;
+    --muted: #a78bfa;
+    --accent: #d8b4e2;
+    --accent-dark: #c084fc;
+    --accent-soft: #271c3c;
+    --accent-border: #442f63;
+    --border: #382758;
+
+    --topbar-bg: #0c0814;
+    --header-bg: #150f24;
+    --nav-bg: #1d1430;
+    --header-text: #ffffff;
+
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.6);
+
+    --badge-franare: #c084fc;
+    --badge-motor: #60a5fa;
+    --badge-suspensie: #34d399;
+    --badge-caroserie: #fbbf24;
   }
 }
 
-.hero {
-  position: relative;
+/* Tema Întunecată setată manual */
+:root[data-theme="dark"] {
+  --bg: #110c1d;
+  --card: #1c152d;
+  --text: #f3e8ff;
+  --muted: #a78bfa;
+  --accent: #d8b4e2;
+  --accent-dark: #c084fc;
+  --accent-soft: #271c3c;
+  --accent-border: #442f63;
+  --border: #382758;
 
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
+  --topbar-bg: #0c0814;
+  --header-bg: #150f24;
+  --nav-bg: #1d1430;
+  --header-text: #ffffff;
 
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.6);
 
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+  --badge-franare: #c084fc;
+  --badge-motor: #60a5fa;
+  --badge-suspensie: #34d399;
+  --badge-caroserie: #fbbf24;
 }
 
-#center {
+/* Tema Luminoasă setată manual */
+:root[data-theme="light"] {
+  --bg: #fcf8fc;
+  --card: #ffffff;
+  --text: #2d2640;
+  --muted: #8e7a8e;
+  --accent: #C8A2C8;
+  --accent-dark: #9b6b9b;
+  --accent-soft: #f8f1f8;
+  --accent-border: #e6d0e6;
+  --border: #e6d8e6;
+
+  --topbar-bg: #120e1c;
+  --header-bg: #1a1625;
+  --nav-bg: #261b36;
+  --header-text: #ffffff;
+
+  --shadow: 0 4px 20px rgba(155, 107, 155, 0.08);
+  --shadow-hover: 0 8px 26px rgba(155, 107, 155, 0.16);
+
+  --badge-franare: #b052b3;
+  --badge-motor: #2563eb;
+  --badge-suspensie: #059669;
+  --badge-caroserie: #d97706;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+}
+
+.site-wrapper {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
 }
 
-#next-steps {
+/* =========================================================
+   1. Bara de utilitate superioară (Top Bar)
+   ========================================================= */
+.top-bar {
+  background-color: var(--topbar-bg);
+  color: #d1c7d1;
+  font-size: 0.84rem;
+  padding: 8px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.top-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+.top-bar-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-#next-steps ul {
+.top-bar-info strong {
+  color: #ffffff;
+}
+
+.separator {
+  opacity: 0.35;
+}
+
+.theme-toggle {
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* =========================================================
+   2. Antetul principal (App Header: Logo, Search, Cart)
+   ========================================================= */
+.app-header {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-icon {
+  font-size: 2.3rem;
+  line-height: 1;
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+.brand-tagline {
+  font-size: 0.76rem;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.header-search {
+  flex: 1;
+  max-width: 580px;
+  min-width: 280px;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.search-input-group:focus-within {
+  border-color: var(--accent);
+}
+
+.search-icon {
+  padding-left: 14px;
+  font-size: 1.1rem;
+  color: #6b7280;
+}
+
+.search-input-group input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: #1f2937;
+  background: transparent;
+}
+
+.search-clear-btn {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.search-clear-btn:hover {
+  color: #374151;
+}
+
+.search-submit-btn {
+  background-color: var(--accent);
+  color: #1a1625;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-submit-btn:hover {
+  background-color: var(--accent-dark);
+  color: #ffffff;
+}
+
+.cart-widget {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 10px 18px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+.cart-icon {
+  font-size: 1.7rem;
+}
+
+.cart-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-label {
+  font-size: 0.74rem;
+  color: #d1c7d1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cart-count {
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+
+/* =========================================================
+   3. Meniu Categorii (Navigație Orizontală)
+   ========================================================= */
+.cat-nav {
+  background-color: var(--nav-bg);
+  border-bottom: 2px solid var(--accent);
+}
+
+.cat-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 6px 20px;
+}
+
+.cat-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.cat-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cat-btn.active {
+  background-color: var(--accent);
+  color: #1a1625;
+}
+
+/* =========================================================
+   4. Banner Hero & Configurator Vehicul (stil pieseautoarges.ro)
+   ========================================================= */
+.hero-banner {
+  background: linear-gradient(135deg, #1d152a 0%, #2e1c40 100%);
+  color: #ffffff;
+  padding: 44px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(200, 162, 200, 0.18);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.hero-text h2 {
+  font-size: 2.3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 14px 0;
+  color: #ffffff;
+}
+
+.hero-text p {
+  color: #d1c7d1;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.vehicle-configurator {
+  background-color: var(--card);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+}
+
+.configurator-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+
+.configurator-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.configurator-grid select {
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 0.92rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.configurator-grid select:focus {
+  border-color: var(--accent);
+}
+
+.configurator-btn {
+  background-color: var(--accent);
+  color: #1a1625;
+  border: none;
+  padding: 13px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 4px;
+}
+
+.configurator-btn:hover {
+  background-color: var(--accent-dark);
+  color: #ffffff;
+}
+
+/* =========================================================
+   5. Bară de Încredere (Trust Badges ca pe pieseautoarges.ro)
+   ========================================================= */
+.trust-bar {
+  background-color: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.trust-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.trust-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.trust-icon {
+  font-size: 2.1rem;
+  flex-shrink: 0;
+}
+
+.trust-card strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.trust-card p {
+  margin: 2px 0 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* =========================================================
+   6. Conținut Principal & Catalog Produse
+   ========================================================= */
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 36px auto;
+  padding: 0 20px;
+  flex: 1;
+}
+
+.panel {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.panel-subtitle {
+  font-size: 0.88rem;
+  color: var(--muted);
+  display: block;
+  margin-top: 4px;
+}
+
+/* Contorul obligatoriu cerut de cerințe (S5-R4) */
+.app-count {
+  font-size: 0.88rem;
+  background-color: var(--accent-soft);
+  color: var(--text);
+  border: 1px solid var(--accent-border);
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 20px;
+  margin: 0 !important;
+  font-weight: 600;
+}
+
+.search-feedback {
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background-color: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.btn-link {
+  background: transparent;
+  border: none;
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* =========================================================
+   7. Cardurile de produse / piese auto (PiesaCard)
+   ========================================================= */
+.item-list {
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 44px 20px;
+  font-style: italic;
+  background-color: var(--accent-soft);
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+  margin: 0;
+}
+
+.item-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--card);
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.item-card:hover {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* Starea finalizată / indisponibilă cerută de S1-R5, S4-R5, S5-R2 */
+.item-card.done {
+  opacity: 0.65;
+  background-color: var(--accent-soft);
+  border-color: var(--border);
+}
+
+.item-card.done .part-title {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.card-thumb {
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  background-color: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.part-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.card-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-header-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.part-code {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.part-title {
+  margin: 0 0 6px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  word-break: break-word;
+  transition: color 0.2s ease;
+}
+
+.stock-tag {
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.stock-tag.in-stock {
+  color: #10b981;
+}
+
+.stock-tag.out-of-stock {
+  color: var(--muted);
+}
+
+/* --- Partea de acțiuni din card --- */
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.card-left {
+  display: flex;
+  align-items: center;
   gap: 8px;
-  margin: 32px 0 0;
+  cursor: pointer;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background-color: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  transition: all 0.2s ease;
+}
 
-  .logo {
-    height: 18px;
+.card-left:hover {
+  border-color: var(--accent);
+}
+
+.card-left input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--accent-dark);
+}
+
+.stock-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* --- Etichete (Badges categorii) --- */
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.badge-franare {
+  background-color: var(--badge-franare);
+}
+
+.badge-motor {
+  background-color: var(--badge-motor);
+}
+
+.badge-suspensie {
+  background-color: var(--badge-suspensie);
+}
+
+.badge-caroserie {
+  background-color: var(--badge-caroserie);
+}
+
+/* --- Buton Ștergere (S5-R3) --- */
+.btn-danger {
+  border: 1px solid #ef4444;
+  background: transparent;
+  color: #ef4444;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   8. Banner Asistență Tehnică VIN
+   ========================================================= */
+.support-banner {
+  margin-top: 36px;
+  background: linear-gradient(135deg, #241b35 0%, #171124 100%);
+  border: 1px solid var(--accent-border);
+  border-radius: 16px;
+  padding: 26px 32px;
+  color: #ffffff;
+}
+
+.support-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.support-icon {
+  font-size: 2.4rem;
+}
+
+.support-text {
+  flex: 1;
+  min-width: 260px;
+}
+
+.support-text h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+.support-text p {
+  margin: 0;
+  color: #d1c7d1;
+  font-size: 0.95rem;
+}
+
+.support-btn {
+  background-color: var(--accent);
+  color: #1a1625;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 12px 22px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.support-btn:hover {
+  background-color: var(--accent-dark);
+  color: #ffffff;
+}
+
+/* =========================================================
+   9. Subsol Profesional E-Commerce (Footer stil pieseautoarges.ro)
+   ========================================================= */
+.app-footer {
+  background-color: var(--header-bg);
+  color: #d1c7d1;
+  border-top: 2px solid var(--accent);
+  margin-top: 60px;
+  padding: 48px 20px 24px;
+}
+
+.footer-columns {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+
+.footer-col h4 {
+  color: #ffffff;
+  font-size: 1.05rem;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.footer-col p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #bfaebf;
+  margin: 0 0 10px 0;
+}
+
+.footer-contact {
+  color: #d1c7d1 !important;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col a {
+  color: #bfaebf;
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.84rem;
+  color: #8e7a8e;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* =========================================================
+   10. Accesibilitate & Responsive (Dispozitive mobile & tablete)
+   ========================================================= */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 992px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
+  .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-search {
+    max-width: 100%;
+  }
+
+  .cart-widget {
+    align-self: flex-start;
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .item-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .card-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr;
   }
 }
 
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
-}

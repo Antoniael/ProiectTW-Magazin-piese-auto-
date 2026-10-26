@@ -111,3 +111,26 @@ Lista este desenată integral din date, prin două componente React:
 | S4-R5 | Starea modifică aspectul cardului | PiesaCard.jsx | modificare flag `inStoc` |
 | S4-R6 | Secțiunea Etapa 4 în README + Jurnalul AI | README.md, ai-log/etapa-04.md | citire |
 | S4-R7 | Commit-ul „Stage 4” publicat pe GitHub | Istoricul de commit-uri | istoricul git |
+
+## Etapa 5: State local și evenimente
+Lista trăiește acum în `state`-ul componentei React. Piesele pot fi bifate și șterse direct din pagină, iar contorul din antet se actualizează automat. Un buton în antet permite comutarea între tema luminoasă și cea întunecată. La reîncărcarea paginii, datele revin la valorile inițiale (lucru ce va fi rezolvat în etapele următoare).
+
+## Stadiul proiectului
+- [x] Etapa 1: Mockup static în HTML și CSS
+- [x] Etapa 2: Logica pe date în JavaScript
+- [x] Etapa 3: Inițializarea proiectului React (Vite)
+- [x] Etapa 4: Componente construite din date
+- [x] Etapa 5: State local și evenimente
+- [ ] Etapa 6: Încărcarea datelor de la un mock API
+
+### Tabel de verificare - Etapa 5
+| ID | Cerință | Unde se verifică | Cum se verifică |
+| :--- | :--- | :--- | :--- |
+| S5-R1 | Lista este păstrată în useState, în App | App.jsx | citire |
+| S5-R2 | Bifarea schimbă starea și aspectul cardului | App.jsx, PiesaCard.jsx | clic pe checkbox |
+| S5-R3 | Ștergerea elimină elementul | App.jsx, PiesaCard.jsx | clic pe Șterge |
+| S5-R4 | Contorul din antet este o valoare derivată | App.jsx | bifează, observă antetul |
+| S5-R5 | Actualizări imutabile (fără push/splice) | App.jsx | citire funcții handle |
+| S5-R6 | Comutare temă luminos/întunecat | App.jsx, App.css | clic buton temă |
+| S5-R7 | Fără avertismente; README + AI log actualizate | README.md, ai-log/etapa-05.md | F12, Consolă |
+| S5-R8 | Commit "Stage 5" publicat pe GitHub | Istoric commit-uri | istoric git |
