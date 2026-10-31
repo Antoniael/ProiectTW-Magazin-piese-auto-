@@ -3,24 +3,26 @@
 }
 
 :root {
-  /* Paleta principală - Stil Lila & Modern E-Commerce */
+  /* Paleta principală - Stil Lila & Modern E-Commerce (Mod Luminos mai deschis și mai cald) */
   --bg: #fcf8fc;
   --card: #ffffff;
   --text: #2d2640;
   --muted: #8e7a8e;
-  --accent: #C8A2C8;        /* Nuanța lila originală din proiect */
-  --accent-dark: #9b6b9b;
-  --accent-soft: #f8f1f8;
-  --accent-border: #e6d0e6;
-  --border: #e6d8e6;
+  --accent: #d4a9dc;        /* Nuanță lila mai deschisă și plăcută */
+  --accent-dark: #8c5798;
+  --accent-soft: #fbf5fc;
+  --accent-border: #ebd5ef;
+  --border: #e6d8e8;
   
-  --topbar-bg: #120e1c;
-  --header-bg: #1a1625;
-  --nav-bg: #261b36;
+  /* Tonuri de mov mai deschise pentru modul luminos pentru a reduce contrastul agresiv */
+  --topbar-bg: #483567;
+  --header-bg: #5c4384;
+  --nav-bg: #6e529b;
+  --hero-bg: linear-gradient(135deg, #58407f 0%, #7557a6 100%);
   --header-text: #ffffff;
   
-  --shadow: 0 4px 20px rgba(155, 107, 155, 0.08);
-  --shadow-hover: 0 8px 26px rgba(155, 107, 155, 0.16);
+  --shadow: 0 4px 20px rgba(110, 82, 155, 0.08);
+  --shadow-hover: 0 8px 26px rgba(110, 82, 155, 0.15);
 
   /* Categorii de piese auto */
   --badge-franare: #b052b3;
@@ -45,6 +47,7 @@
     --topbar-bg: #0c0814;
     --header-bg: #150f24;
     --nav-bg: #1d1430;
+    --hero-bg: linear-gradient(135deg, #1d152a 0%, #2e1c40 100%);
     --header-text: #ffffff;
 
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -72,6 +75,7 @@
   --topbar-bg: #0c0814;
   --header-bg: #150f24;
   --nav-bg: #1d1430;
+  --hero-bg: linear-gradient(135deg, #1d152a 0%, #2e1c40 100%);
   --header-text: #ffffff;
 
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -89,19 +93,20 @@
   --card: #ffffff;
   --text: #2d2640;
   --muted: #8e7a8e;
-  --accent: #C8A2C8;
-  --accent-dark: #9b6b9b;
-  --accent-soft: #f8f1f8;
-  --accent-border: #e6d0e6;
-  --border: #e6d8e6;
+  --accent: #d4a9dc;
+  --accent-dark: #8c5798;
+  --accent-soft: #fbf5fc;
+  --accent-border: #ebd5ef;
+  --border: #e6d8e8;
 
-  --topbar-bg: #120e1c;
-  --header-bg: #1a1625;
-  --nav-bg: #261b36;
+  --topbar-bg: #483567;
+  --header-bg: #5c4384;
+  --nav-bg: #6e529b;
+  --hero-bg: linear-gradient(135deg, #58407f 0%, #7557a6 100%);
   --header-text: #ffffff;
 
-  --shadow: 0 4px 20px rgba(155, 107, 155, 0.08);
-  --shadow-hover: 0 8px 26px rgba(155, 107, 155, 0.16);
+  --shadow: 0 4px 20px rgba(110, 82, 155, 0.08);
+  --shadow-hover: 0 8px 26px rgba(110, 82, 155, 0.15);
 
   --badge-franare: #b052b3;
   --badge-motor: #2563eb;
@@ -130,46 +135,28 @@ body {
    ========================================================= */
 .top-bar {
   background-color: var(--topbar-bg);
-  color: #d1c7d1;
-  font-size: 0.84rem;
   padding: 8px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background-color 0.25s ease;
 }
 
 .top-bar-inner {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.top-bar-info {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.top-bar-info strong {
-  color: #ffffff;
-}
-
-.separator {
-  opacity: 0.35;
 }
 
 .theme-toggle {
-  padding: 5px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
   font: inherit;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -178,8 +165,8 @@ body {
 }
 
 .theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 /* =========================================================
@@ -188,8 +175,9 @@ body {
 .app-header {
   background-color: var(--header-bg);
   color: var(--header-text);
-  padding: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 22px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background-color 0.25s ease;
 }
 
 .header-container {
@@ -224,7 +212,7 @@ body {
 
 .brand-tagline {
   font-size: 0.76rem;
-  color: var(--accent);
+  color: #f1d7f6;
   font-weight: 600;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -243,7 +231,7 @@ body {
   background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
   border: 2px solid transparent;
   transition: border-color 0.2s ease;
 }
@@ -283,7 +271,7 @@ body {
 
 .search-submit-btn {
   background-color: var(--accent);
-  color: #1a1625;
+  color: #2d2640;
   border: none;
   padding: 12px 24px;
   font-weight: 700;
@@ -301,8 +289,8 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 10px 18px;
   border-radius: 10px;
   color: #ffffff;
@@ -319,13 +307,17 @@ body {
 
 .cart-label {
   font-size: 0.74rem;
-  color: #d1c7d1;
+  color: #f3e8f8;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .cart-count {
   font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.cart-count strong {
   color: var(--accent);
 }
 
@@ -335,6 +327,7 @@ body {
 .cat-nav {
   background-color: var(--nav-bg);
   border-bottom: 2px solid var(--accent);
+  transition: background-color 0.25s ease;
 }
 
 .cat-nav-inner {
@@ -360,22 +353,23 @@ body {
 }
 
 .cat-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .cat-btn.active {
   background-color: var(--accent);
-  color: #1a1625;
+  color: #2d2640;
 }
 
 /* =========================================================
-   4. Banner Hero & Configurator Vehicul (stil pieseautoarges.ro)
+   4. Banner Hero & Configurator Vehicul
    ========================================================= */
 .hero-banner {
-  background: linear-gradient(135deg, #1d152a 0%, #2e1c40 100%);
+  background: var(--hero-bg);
   color: #ffffff;
   padding: 44px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.25s ease;
 }
 
 .hero-container {
@@ -389,9 +383,9 @@ body {
 
 .hero-badge {
   display: inline-block;
-  background: rgba(200, 162, 200, 0.18);
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
   font-size: 0.78rem;
   font-weight: 700;
   padding: 4px 12px;
@@ -410,7 +404,7 @@ body {
 }
 
 .hero-text p {
-  color: #d1c7d1;
+  color: #f1e4f6;
   font-size: 1.05rem;
   line-height: 1.6;
   margin: 0;
@@ -421,7 +415,7 @@ body {
   color: var(--text);
   border-radius: 14px;
   padding: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   border: 1px solid var(--border);
 }
 
@@ -459,7 +453,7 @@ body {
 
 .configurator-btn {
   background-color: var(--accent);
-  color: #1a1625;
+  color: #2d2640;
   border: none;
   padding: 13px;
   border-radius: 8px;
@@ -476,48 +470,7 @@ body {
 }
 
 /* =========================================================
-   5. Bară de Încredere (Trust Badges ca pe pieseautoarges.ro)
-   ========================================================= */
-.trust-bar {
-  background-color: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 24px 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-}
-
-.trust-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.trust-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.trust-icon {
-  font-size: 2.1rem;
-  flex-shrink: 0;
-}
-
-.trust-card strong {
-  display: block;
-  font-size: 0.95rem;
-  color: var(--text);
-}
-
-.trust-card p {
-  margin: 2px 0 0 0;
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-
-/* =========================================================
-   6. Conținut Principal & Catalog Produse
+   5. Conținut Principal & Catalog Produse
    ========================================================= */
 .container {
   max-width: 1200px;
@@ -595,7 +548,7 @@ body {
 }
 
 /* =========================================================
-   7. Cardurile de produse / piese auto (PiesaCard)
+   6. Cardurile de produse / piese auto (PiesaCard)
    ========================================================= */
 .item-list {
   list-style: none;
@@ -796,137 +749,23 @@ body {
 }
 
 /* =========================================================
-   8. Banner Asistență Tehnică VIN
-   ========================================================= */
-.support-banner {
-  margin-top: 36px;
-  background: linear-gradient(135deg, #241b35 0%, #171124 100%);
-  border: 1px solid var(--accent-border);
-  border-radius: 16px;
-  padding: 26px 32px;
-  color: #ffffff;
-}
-
-.support-content {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.support-icon {
-  font-size: 2.4rem;
-}
-
-.support-text {
-  flex: 1;
-  min-width: 260px;
-}
-
-.support-text h3 {
-  margin: 0 0 6px 0;
-  font-size: 1.25rem;
-  color: #ffffff;
-}
-
-.support-text p {
-  margin: 0;
-  color: #d1c7d1;
-  font-size: 0.95rem;
-}
-
-.support-btn {
-  background-color: var(--accent);
-  color: #1a1625;
-  text-decoration: none;
-  font-weight: 700;
-  padding: 12px 22px;
-  border-radius: 8px;
-  transition: background-color 0.2s ease;
-  white-space: nowrap;
-}
-
-.support-btn:hover {
-  background-color: var(--accent-dark);
-  color: #ffffff;
-}
-
-/* =========================================================
-   9. Subsol Profesional E-Commerce (Footer stil pieseautoarges.ro)
+   7. Subsol (Footer)
    ========================================================= */
 .app-footer {
-  background-color: var(--header-bg);
-  color: #d1c7d1;
-  border-top: 2px solid var(--accent);
-  margin-top: 60px;
-  padding: 48px 20px 24px;
-}
-
-.footer-columns {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 32px;
-  margin-bottom: 36px;
-}
-
-.footer-col h4 {
-  color: #ffffff;
-  font-size: 1.05rem;
-  margin-top: 0;
-  margin-bottom: 16px;
-  font-weight: 700;
-}
-
-.footer-col p {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: #bfaebf;
-  margin: 0 0 10px 0;
-}
-
-.footer-contact {
-  color: #d1c7d1 !important;
-}
-
-.footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-col a {
-  color: #bfaebf;
-  text-decoration: none;
-  font-size: 0.88rem;
-  transition: color 0.2s ease;
-}
-
-.footer-col a:hover {
-  color: var(--accent);
-}
-
-.footer-bottom {
-  max-width: 1200px;
-  margin: 0 auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 20px;
   text-align: center;
-  font-size: 0.84rem;
-  color: #8e7a8e;
+  padding: 24px 20px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
 }
 
-.footer-bottom p {
+.app-footer p {
   margin: 0;
 }
 
 /* =========================================================
-   10. Accesibilitate & Responsive (Dispozitive mobile & tablete)
+   8. Accesibilitate & Responsive (Dispozitive mobile & tablete)
    ========================================================= */
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -937,14 +776,6 @@ body {
   .hero-container {
     grid-template-columns: 1fr;
     gap: 28px;
-  }
-
-  .trust-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-columns {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -962,10 +793,6 @@ body {
     align-self: flex-start;
   }
 
-  .trust-grid {
-    grid-template-columns: 1fr;
-  }
-
   .item-card {
     flex-direction: column;
     align-items: flex-start;
@@ -976,9 +803,4 @@ body {
     width: 100%;
     justify-content: space-between;
   }
-
-  .footer-columns {
-    grid-template-columns: 1fr;
-  }
 }
-

@@ -54,16 +54,9 @@ export default function App() {
 
   return (
     <div className="site-wrapper">
-      {/* 1. Bara superioară de utilitate (stil pieseautoarges.ro) */}
+      {/* 1. Bara superioară: comutator temă */}
       <div className="top-bar">
         <div className="top-bar-inner">
-          <div className="top-bar-info">
-            <span>📞 <strong>0722 123 456</strong> (L-V: 08:30 - 18:00)</span>
-            <span className="separator">|</span>
-            <span>🚚 Livrare rapidă 24/48h</span>
-            <span className="separator">|</span>
-            <span>🔍 Verificare gratuită serie șasiu (VIN)</span>
-          </div>
           <div className="top-bar-actions">
             <button
               className="theme-toggle"
@@ -77,14 +70,14 @@ export default function App() {
         </div>
       </div>
 
-      {/* 2. Antetul principal: Logo, Căutare mare, Coș / Informații */}
+      {/* 2. Antetul principal: Logo, Căutare, Coș / Informații */}
       <header className="app-header">
         <div className="header-container">
           <div className="header-brand">
             <div className="brand-logo">
               <span className="brand-icon">⚙️</span>
               <div className="brand-text">
-                <h1>AutoPiese Pro</h1>
+                <h1>VYC PROD</h1>
                 <span className="brand-tagline">Magazin Piese Auto & Accesorii</span>
               </div>
             </div>
@@ -95,7 +88,7 @@ export default function App() {
               <span className="search-icon">🔍</span>
               <input
                 type="text"
-                placeholder="Caută piesă (ex: plăcuțe frână, filtru), cod sau serie VIN..."
+                placeholder="Caută piesă (ex: plăcuțe frână, filtru)..."
                 value={cautare}
                 onChange={(e) => setCautare(e.target.value)}
                 aria-label="Căutare piese auto"
@@ -128,7 +121,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* 3. Meniu de categorii (stil bară de navigare auto) */}
+      {/* 3. Meniu de categorii */}
       <nav className="cat-nav" aria-label="Categorii principale">
         <div className="cat-nav-inner">
           <button
@@ -173,10 +166,10 @@ export default function App() {
       <section className="hero-banner">
         <div className="hero-container">
           <div className="hero-text">
-            <span className="hero-badge">Piese Auto Garantate & Verificare VIN</span>
+            <span className="hero-badge">Piese Auto</span>
             <h2>Găsește piesele potrivite pentru mașina ta</h2>
             <p>
-              Catalog complet de piese auto originale și compatibile. Verificăm seria de șasiu gratuit pentru a garanta potrivirea 100%.
+              Catalog de piese auto originale și compatibile pentru mașina ta.
             </p>
           </div>
 
@@ -227,44 +220,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 5. Bară de încredere / Piloni de valoare (Trust Badges ca pe pieseautoarges.ro) */}
-      <section className="trust-bar">
-        <div className="trust-grid">
-          <div className="trust-card">
-            <span className="trust-icon">🚚</span>
-            <div>
-              <strong>Livrare Rapidă</strong>
-              <p>În 24-48 ore direct din stoc</p>
-            </div>
-          </div>
-
-          <div className="trust-card">
-            <span className="trust-icon">🔍</span>
-            <div>
-              <strong>Verificare Serie Șasiu</strong>
-              <p>Compatibilitate 100% garantată</p>
-            </div>
-          </div>
-
-          <div className="trust-card">
-            <span className="trust-icon">🛡️</span>
-            <div>
-              <strong>Piese Garantate</strong>
-              <p>14 zile retur și garanție oficială</p>
-            </div>
-          </div>
-
-          <div className="trust-card">
-            <span className="trust-icon">📦</span>
-            <div>
-              <strong>Deschidere Colet</strong>
-              <p>Verifici piesele la livrare</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Conținutul principal: Catalogul de piese */}
+      {/* 5. Conținutul principal: Catalogul de piese */}
       <main className="container">
         <section className="panel">
           <div className="panel-header">
@@ -298,77 +254,12 @@ export default function App() {
             onDelete={handleDelete}
           />
         </section>
-
-        {/* 7. Asistență & Consiliere VIN */}
-        <section className="support-banner">
-          <div className="support-content">
-            <span className="support-icon">💬</span>
-            <div className="support-text">
-              <h3>Ai nevoie de ajutor pentru identificarea piesei potrivite?</h3>
-              <p>
-                Trimite-ne seria de șasiu (VIN) pe WhatsApp sau contactează un consultant AutoPiese Pro la <strong>0722 123 456</strong>.
-              </p>
-            </div>
-            <a href="tel:0722123456" className="support-btn">
-              📞 Sună un consultant
-            </a>
-          </div>
-        </section>
       </main>
 
-      {/* 8. Subsol profesional (stil pieseautoarges.ro) */}
+      {/* 6. Subsol curat */}
       <footer className="app-footer">
-        <div className="footer-columns">
-          <div className="footer-col">
-            <h4>AutoPiese Pro</h4>
-            <p>
-              Magazin online de piese auto originale și compatibile. Ne asigurăm că fiecare piesă comandată se potrivește perfect automobilului tău.
-            </p>
-            <p className="footer-contact">
-              📍 Str. Depozitelor nr. 12, Pitești, Argeș<br />
-              📞 Telefon: 0722 123 456<br />
-              ✉️ Email: contact@autopiesepro.ro
-            </p>
-          </div>
-
-          <div className="footer-col">
-            <h4>Zona Client</h4>
-            <ul>
-              <li><a href="#comanda">Cum comand</a></li>
-              <li><a href="#livrare">Livrare și plată</a></li>
-              <li><a href="#retur">Politică de retur 14 zile</a></li>
-              <li><a href="#vin">Identificare după serie șasiu</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h4>Categorii Populare</h4>
-            <ul>
-              <li><a href="#placute">Plăcuțe și discuri frână</a></li>
-              <li><a href="#filtre">Filtre ulei, aer, combustibil</a></li>
-              <li><a href="#amortizoare">Amortizoare și suspensie</a></li>
-              <li><a href="#uleiuri">Uleiuri de motor și transmisie</a></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h4>Siguranță &amp; Legal</h4>
-            <ul>
-              <li><a href="#termeni">Termeni și condiții</a></li>
-              <li><a href="#gdpr">Politică de confidențialitate</a></li>
-              <li><a href="#anpc">A.N.P.C.</a></li>
-              <li><a href="#sol">Soluționarea Online a Litigiilor</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <p>
-            Proiect Tehnologii Web &copy; 2026 - Magazin Piese Auto. Inspirat de pieseautoarges.ro.
-          </p>
-        </div>
+        <p>Proiect Tehnologii Web &copy; 2026 - Magazin Piese Auto</p>
       </footer>
     </div>
   );
 }
-
