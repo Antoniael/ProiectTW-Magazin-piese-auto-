@@ -24,3 +24,4 @@
 - Am învățat cum se simulează un API REST folosind `json-server` din fișierul `db.json`.
 - Am înțeles că `fetch` nu aruncă excepții automate pentru erori HTTP 404/500, fiind necesară verificarea explicită a proprietății `res.ok`.
 - Am învățat de ce este esențială variabila `ignore` în `useEffect` pentru a ignora actualizările de stare dacă o componentă este demontată înainte de sosirea răspunsului sau în timpul dublei montări din modul de dezvoltare React.
+
