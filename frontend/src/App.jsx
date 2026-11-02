@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import PiesaList from "./components/PiesaList.jsx";
-
-// Datele inițiale ale catalogului
-const PIESE_INITIALE = [
-  { id: 1, titlu: "Plăcuțe frână față", inStoc: true, tip: "franare" },
-  { id: 2, titlu: "Filtru ulei motor", inStoc: true, tip: "motor" },
-  { id: 3, titlu: "Amortizor spate", inStoc: false, tip: "suspensie" },
-];
+import { fetchPiese } from "./api.js";
 
 // Citirea temei sistemului de operare la prima încărcare
 function temaInitiala() {
@@ -14,10 +8,31 @@ function temaInitiala() {
 }
 
 export default function App() {
-  const [piese, setPiese] = useState(PIESE_INITIALE);
+  const [piese, setPiese] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [tema, setTema] = useState(temaInitiala);
   const [cautare, setCautare] = useState("");
   const [categorieFiltru, setCategorieFiltru] = useState("toate");
+
+  // Încărcarea datelor de la server la montarea componentei
+  useEffect(() => {
+    let ignore = false;
+    async function load() {
+      try {
+        const data = await fetchPiese();
+        if (!ignore) setPiese(data);
+      } catch (err) {
+        if (!ignore) setError(err.message);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+    load();
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   // Sincronizarea temei pe tag-ul html
   useEffect(() => {
@@ -248,11 +263,19 @@ export default function App() {
             </div>
           )}
 
-          <PiesaList
-            piese={pieseAfisate}
-            onToggle={handleToggleStoc}
-            onDelete={handleDelete}
-          />
+          {loading && <p className="info">Se încarcă catalogul de piese...</p>}
+          {error && (
+            <p className="error">
+              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+            </p>
+          )}
+          {!loading && !error && (
+            <PiesaList
+              piese={pieseAfisate}
+              onToggle={handleToggleStoc}
+              onDelete={handleDelete}
+            />
+          )}
         </section>
       </main>
 

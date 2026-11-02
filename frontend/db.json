@@ -1,0 +1,9 @@
+{
+  "piese": [
+    { "id": 1, "titlu": "Plăcuțe frână față", "inStoc": true, "tip": "franare" },
+    { "id": 2, "titlu": "Filtru ulei motor", "inStoc": true, "tip": "motor" },
+    { "id": 3, "titlu": "Amortizor spate", "inStoc": false, "tip": "suspensie" },
+    { "id": 4, "titlu": "Far stânga față", "inStoc": true, "tip": "caroserie" },
+    { "id": 5, "titlu": "Bujie incandescentă", "inStoc": true, "tip": "motor" }
+  ]
+}

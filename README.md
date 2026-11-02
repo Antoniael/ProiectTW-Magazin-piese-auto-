@@ -88,6 +88,7 @@ O aplicație web pentru gestionarea inventarului de piese auto, destinată clien
 2. Instalează dependențele (dacă nu ai făcut-o deja):
    ```bash
    npm install
+   ```
 
 ## Etapa 4: Componente construite din date
 Lista este desenată integral din date, prin două componente React:
@@ -99,7 +100,9 @@ Lista este desenată integral din date, prin două componente React:
 - [x] Etapa 2: Logica pe date în JavaScript
 - [x] Etapa 3: Inițializarea proiectului React (Vite)
 - [x] Etapa 4: Componente construite din date
-- [ ] Etapa 5: Stare locală și evenimente
+- [x] Etapa 5: Stare locală și evenimente
+- [x] Etapa 6: Încărcarea datelor de la un mock API
+- [ ] Etapa 7: Formular și validare
 
 ### Tabel de verificare - Etapa 4
 | ID | Cerință | Unde se verifică | Cum se verifică |
@@ -115,14 +118,6 @@ Lista este desenată integral din date, prin două componente React:
 ## Etapa 5: State local și evenimente
 Lista trăiește acum în `state`-ul componentei React. Piesele pot fi bifate și șterse direct din pagină, iar contorul din antet se actualizează automat. Un buton în antet permite comutarea între tema luminoasă și cea întunecată. La reîncărcarea paginii, datele revin la valorile inițiale (lucru ce va fi rezolvat în etapele următoare).
 
-## Stadiul proiectului
-- [x] Etapa 1: Mockup static în HTML și CSS
-- [x] Etapa 2: Logica pe date în JavaScript
-- [x] Etapa 3: Inițializarea proiectului React (Vite)
-- [x] Etapa 4: Componente construite din date
-- [x] Etapa 5: State local și evenimente
-- [ ] Etapa 6: Încărcarea datelor de la un mock API
-
 ### Tabel de verificare - Etapa 5
 | ID | Cerință | Unde se verifică | Cum se verifică |
 | :--- | :--- | :--- | :--- |
@@ -134,3 +129,29 @@ Lista trăiește acum în `state`-ul componentei React. Piesele pot fi bifate ș
 | S5-R6 | Comutare temă luminos/întunecat | App.jsx, App.css | clic buton temă |
 | S5-R7 | Fără avertismente; README + AI log actualizate | README.md, ai-log/etapa-05.md | F12, Consolă |
 | S5-R8 | Commit "Stage 5" publicat pe GitHub | Istoric commit-uri | istoric git |
+
+---
+
+## Stage 6: data from a mock API
+Lista de piese este servită de `json-server` din fișierul `frontend/db.json`. Aplicația preia datele la deschiderea paginii prin `useEffect` și gestionează starea de încărcare, starea de succes și starea de eroare.
+
+```bash
+# Terminal 1 - Mock API (port 3001)
+cd frontend
+npm run api
+
+# Terminal 2 - Frontend React Vite (port 5173)
+cd frontend
+npm run dev
+```
+
+### Tabel de verificare - Etapa 6
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S6-R1 | npm run api starts, route shows JSON | frontend/package.json, frontend/db.json | open localhost:3001/piese |
+| S6-R2 | data no longer in React code | frontend/src/App.jsx (useState([])) | read |
+| S6-R3 | loading message while waiting | frontend/src/App.jsx | --delay 4000 |
+| S6-R4 | error message when API is down | frontend/src/App.jsx | stop npm run api, refresh |
+| S6-R5 | fetch only in api.js, URL from env | frontend/src/api.js, frontend/.env.example | search for fetch |
+| S6-R6 | README Stage 6 section + AI log | README.md, ai-log/etapa-06.md | read |
+| S6-R7 | commit "Stage 6" pushed | link to the commit | commit history |

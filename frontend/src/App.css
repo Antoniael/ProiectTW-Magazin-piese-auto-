@@ -29,6 +29,11 @@
   --badge-motor: #2563eb;
   --badge-suspensie: #059669;
   --badge-caroserie: #d97706;
+
+  /* Etapa 6: culori eroare */
+  --error-bg: #fdf2f2;
+  --error-border: #fca5a5;
+  --error-text: #b91c1c;
 }
 
 /* Suport Tema Întunecată (Dark Mode) - automată prin preferința sistemului */
@@ -57,6 +62,10 @@
     --badge-motor: #60a5fa;
     --badge-suspensie: #34d399;
     --badge-caroserie: #fbbf24;
+
+    --error-bg: #37171d;
+    --error-border: #7f1d1d;
+    --error-text: #fca5a5;
   }
 }
 
@@ -85,6 +94,10 @@
   --badge-motor: #60a5fa;
   --badge-suspensie: #34d399;
   --badge-caroserie: #fbbf24;
+
+  --error-bg: #37171d;
+  --error-border: #7f1d1d;
+  --error-text: #fca5a5;
 }
 
 /* Tema Luminoasă setată manual */
@@ -112,6 +125,10 @@
   --badge-motor: #2563eb;
   --badge-suspensie: #059669;
   --badge-caroserie: #d97706;
+
+  --error-bg: #fdf2f2;
+  --error-border: #fca5a5;
+  --error-text: #b91c1c;
 }
 
 body {
@@ -762,6 +779,40 @@ body {
 
 .app-footer p {
   margin: 0;
+}
+
+/* =========================================================
+   Etapa 6: Stări de încărcare și de eroare
+   ========================================================= */
+.info {
+  color: var(--muted);
+  font-style: italic;
+  padding: 24px 16px;
+  text-align: center;
+  background-color: var(--accent-soft);
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+  margin: 12px 0;
+}
+
+.error {
+  color: var(--error-text);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.error code {
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 /* =========================================================
