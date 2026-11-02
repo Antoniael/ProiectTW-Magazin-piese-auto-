@@ -56,6 +56,22 @@ export default function App() {
     setTema((prev) => (prev === "dark" ? "light" : "dark"));
   }
 
+  // Funcție de resetare a catalogului (reîncărcare din API și resetare filtre)
+  async function handleReset() {
+    setLoading(true);
+    setError(null);
+    setCautare("");
+    setCategorieFiltru("toate");
+    try {
+      const data = await fetchPiese();
+      setPiese(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   // Valoare derivată: numărul de piese aflate în stoc
   const active = piese.filter((p) => p.inStoc).length;
 
@@ -245,9 +261,19 @@ export default function App() {
                 Produse verificate și pregătite pentru expediere
               </span>
             </div>
-            <p className="app-count">
-              {piese.length} piese în catalog, dintre care {active} în stoc
-            </p>
+            <div className="panel-header-actions">
+              <button
+                type="button"
+                className="btn-reset"
+                onClick={handleReset}
+                title="Resetează catalogul și reîncarcă datele din server"
+              >
+                🔄 Resetare
+              </button>
+              <p className="app-count">
+                {piese.length} piese în catalog, dintre care {active} în stoc
+              </p>
+            </div>
           </div>
 
           {cautare && (
@@ -265,9 +291,18 @@ export default function App() {
 
           {loading && <p className="info">Se încarcă catalogul de piese...</p>}
           {error && (
-            <p className="error">
-              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
-            </p>
+            <div className="error">
+              <p>
+                Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+              </p>
+              <button
+                type="button"
+                className="btn-retry"
+                onClick={handleReset}
+              >
+                🔄 Reîncearcă
+              </button>
+            </div>
           )}
           {!loading && !error && (
             <PiesaList

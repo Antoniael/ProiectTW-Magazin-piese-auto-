@@ -530,6 +530,35 @@ body {
   margin-top: 4px;
 }
 
+.panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--accent-soft);
+  color: var(--text);
+  border: 1px solid var(--accent-border);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-reset:hover {
+  background-color: var(--accent);
+  border-color: var(--accent-dark);
+  color: #2d2640;
+  transform: translateY(-1px);
+}
+
 /* Contorul obligatoriu cerut de cerințe (S5-R4) */
 .app-count {
   font-size: 0.88rem;
@@ -804,6 +833,29 @@ body {
   margin: 12px 0;
   font-size: 0.95rem;
   line-height: 1.5;
+}
+
+.error p {
+  margin: 0 0 10px 0;
+}
+
+.btn-retry {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--error-text);
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-retry:hover {
+  opacity: 0.88;
 }
 
 .error code {

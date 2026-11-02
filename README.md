@@ -153,5 +153,5 @@ npm run dev
 | S6-R3 | loading message while waiting | frontend/src/App.jsx | --delay 4000 |
 | S6-R4 | error message when API is down | frontend/src/App.jsx | stop npm run api, refresh |
 | S6-R5 | fetch only in api.js, URL from env | frontend/src/api.js, frontend/.env.example | search for fetch |
-| S6-R6 | README Stage 6 section + AI log | README.md, ai-log/etapa-06.md | read |
+| S6-R6 | README Stage 6 section + AI log | README.md, ai-log/etapa6.md | read |
 | S6-R7 | commit "Stage 6" pushed | link to the commit | commit history |
