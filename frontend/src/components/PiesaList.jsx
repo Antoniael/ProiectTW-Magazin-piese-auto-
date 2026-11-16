@@ -1,4 +1,5 @@
 import PiesaCard from "./PiesaCard.jsx";
+import styles from "./PiesaList.module.css";
 
 export default function PiesaList({ piese, onToggle, onDelete }) {
   if (piese.length === 0) {
@@ -10,13 +11,13 @@ export default function PiesaList({ piese, onToggle, onDelete }) {
   }
 
   return (
-    <ul className="item-list">
+    <ul className={styles.list}>
       {piese.map((piesa) => (
-        <PiesaCard 
-          key={piesa.id} 
-          piesa={piesa} 
-          onToggle={onToggle} 
-          onDelete={onDelete} 
+        <PiesaCard
+          key={piesa.id}
+          piesa={piesa}
+          onToggle={onToggle}
+          onDelete={onDelete}
         />
       ))}
     </ul>

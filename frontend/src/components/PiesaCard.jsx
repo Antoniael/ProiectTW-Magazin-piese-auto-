@@ -1,68 +1,53 @@
-const ETICHETE_TIP = {
-  franare: "Frânare",
-  motor: "Motor",
-  suspensie: "Suspensie",
-  caroserie: "Caroserie",
-};
-
-const ICONS_TIP = {
-  franare: "🛑",
-  motor: "⚙️",
-  suspensie: "🛞",
-  caroserie: "🚗",
-};
+import { Link } from "react-router-dom";
+import { ETICHETE_TIP } from "../constants.js";
+import styles from "./PiesaCard.module.css";
 
 export default function PiesaCard({ piesa, onToggle, onDelete }) {
   return (
     <li
-      className={!piesa.inStoc ? "item-card done" : "item-card"}
+      className={piesa.inStoc ? styles.card : `${styles.card} ${styles.done}`}
       data-testid="item"
       data-id={piesa.id}
     >
-      <div className="card-thumb">
-        <span className="part-icon">{ICONS_TIP[piesa.tip] || "🔧"}</span>
-      </div>
+      <div className={styles.main}>
+        <input
+          type="checkbox"
+          checked={piesa.inStoc}
+          onChange={() => onToggle(piesa.id)}
+          aria-label={`Marchează ${piesa.titlu}`}
+          data-testid="item-toggle"
+        />
 
-      <div className="card-main">
-        <div className="card-header-row">
-          <span className={`badge badge-${piesa.tip}`}>
-            {ETICHETE_TIP[piesa.tip] || piesa.tip}
-          </span>
-          <span className="part-code">COD: AP-00{piesa.id}</span>
-        </div>
+        <div className={styles.info}>
+          <div className={styles.meta}>
+            <span className={`badge badge-${piesa.tip}`}>
+              {ETICHETE_TIP[piesa.tip] || piesa.tip}
+            </span>
+            <span className={styles.partCode}>COD: AP-00{piesa.id}</span>
+          </div>
 
-        <h3 className="part-title" data-testid="item-title">
-          {piesa.titlu}
-        </h3>
+          <Link
+            to={`/piese/${piesa.id}`}
+            className={styles.title}
+            data-testid="item-link"
+          >
+            {piesa.titlu}
+          </Link>
 
-        <div className="card-status-row">
-          <span className={piesa.inStoc ? "stock-tag in-stock" : "stock-tag out-of-stock"}>
+          <span className={`${styles.status} ${piesa.inStoc ? styles.inStock : styles.outOfStock}`}>
             {piesa.inStoc ? "● În stoc" : "○ Indisponibil"}
           </span>
         </div>
       </div>
 
-      <div className="card-actions">
-        <label className="card-left" title="Comută disponibilitatea în stoc">
-          <input
-            type="checkbox"
-            checked={piesa.inStoc}
-            onChange={() => onToggle(piesa.id)}
-            data-testid="item-toggle"
-          />
-          <span className="stock-label">În stoc</span>
-        </label>
-
-        <button
-          className="btn-danger"
-          onClick={() => onDelete(piesa.id)}
-          aria-label={`Șterge ${piesa.titlu}`}
-          title="Șterge piesa din catalog"
-          data-testid="item-delete"
-        >
-          🗑️ Șterge
-        </button>
-      </div>
+      <button
+        className="btn-danger"
+        onClick={() => onDelete(piesa.id)}
+        aria-label={`Șterge ${piesa.titlu}`}
+        data-testid="item-delete"
+      >
+        Șterge
+      </button>
     </li>
   );
 }

@@ -1,11 +1,6 @@
 import { useState } from "react";
-
-const TIPURI = [
-  { value: "motor", label: "Motor" },
-  { value: "franare", label: "Frânare" },
-  { value: "suspensie", label: "Suspensie" },
-  { value: "caroserie", label: "Caroserie" },
-];
+import { TIPURI } from "../constants";
+import styles from "./PiesaForm.module.css";
 
 const TITLU_MAX = 100;
 
@@ -46,7 +41,7 @@ export default function PiesaForm({ onAdd }) {
   }
 
   return (
-    <form className="item-form" onSubmit={handleSubmit} noValidate data-testid="form">
+    <form className={styles.form} onSubmit={handleSubmit} noValidate data-testid="form">
       <label>
         Denumire piesă
         <input
@@ -83,7 +78,7 @@ export default function PiesaForm({ onAdd }) {
 
       <button
         type="submit"
-        className="submit-btn"
+        className="btn"
         disabled={trimite}
         data-testid="form-submit"
       >

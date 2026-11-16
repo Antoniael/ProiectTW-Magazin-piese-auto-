@@ -19,6 +19,10 @@ export function fetchPiese() {
   return request("/piese");
 }
 
+export function fetchPiesa(id) {
+  return request(`/piese/${id}`);
+}
+
 export function createPiesa(piesa) {
   return request("/piese", { method: "POST", body: JSON.stringify(piesa) });
 }

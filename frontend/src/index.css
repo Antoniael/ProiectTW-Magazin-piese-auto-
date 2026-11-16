@@ -1,0 +1,354 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Paleta principală - Stil Lila & Modern E-Commerce */
+  --bg: #fcf8fc;
+  --card: #ffffff;
+  --text: #2d2640;
+  --muted: #8e7a8e;
+  --accent: #d4a9dc;
+  --accent-dark: #8c5798;
+  --accent-soft: #fbf5fc;
+  --accent-border: #ebd5ef;
+  --border: #e6d8e8;
+  --primary: #6e529b;
+
+  --header-bg: #5c4384;
+  --header-text: #ffffff;
+
+  --shadow: 0 4px 20px rgba(110, 82, 155, 0.08);
+  --shadow-hover: 0 8px 26px rgba(110, 82, 155, 0.15);
+
+  /* Categorii de piese auto */
+  --badge-franare: #b052b3;
+  --badge-motor: #2563eb;
+  --badge-suspensie: #059669;
+  --badge-caroserie: #d97706;
+
+  /* Culori status & eroare */
+  --error-bg: #fdf2f2;
+  --error-border: #fca5a5;
+  --error-text: #b91c1c;
+  --success-bg: #ecfdf5;
+  --success-text: #047857;
+  --warning-bg: #fffbeb;
+  --warning-text: #b45309;
+}
+
+/* Suport Tema Întunecată (Dark Mode) automată */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #110c1d;
+    --card: #1c152d;
+    --text: #f3e8ff;
+    --muted: #a78bfa;
+    --accent: #d8b4e2;
+    --accent-dark: #c084fc;
+    --accent-soft: #271c3c;
+    --accent-border: #442f63;
+    --border: #382758;
+    --primary: #c084fc;
+
+    --header-bg: #150f24;
+    --header-text: #ffffff;
+
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.6);
+
+    --badge-franare: #c084fc;
+    --badge-motor: #60a5fa;
+    --badge-suspensie: #34d399;
+    --badge-caroserie: #fbbf24;
+
+    --error-bg: #37171d;
+    --error-border: #7f1d1d;
+    --error-text: #fca5a5;
+    --success-bg: #064e3b;
+    --success-text: #6ee7b7;
+    --warning-bg: #451a03;
+    --warning-text: #fde68a;
+  }
+}
+
+/* Tema Întunecată manuală */
+:root[data-theme="dark"] {
+  --bg: #110c1d;
+  --card: #1c152d;
+  --text: #f3e8ff;
+  --muted: #a78bfa;
+  --accent: #d8b4e2;
+  --accent-dark: #c084fc;
+  --accent-soft: #271c3c;
+  --accent-border: #442f63;
+  --border: #382758;
+  --primary: #c084fc;
+
+  --header-bg: #150f24;
+  --header-text: #ffffff;
+
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.6);
+
+  --badge-franare: #c084fc;
+  --badge-motor: #60a5fa;
+  --badge-suspensie: #34d399;
+  --badge-caroserie: #fbbf24;
+
+  --error-bg: #37171d;
+  --error-border: #7f1d1d;
+  --error-text: #fca5a5;
+  --success-bg: #064e3b;
+  --success-text: #6ee7b7;
+  --warning-bg: #451a03;
+  --warning-text: #fde68a;
+}
+
+/* Tema Luminoasă manuală */
+:root[data-theme="light"] {
+  --bg: #fcf8fc;
+  --card: #ffffff;
+  --text: #2d2640;
+  --muted: #8e7a8e;
+  --accent: #d4a9dc;
+  --accent-dark: #8c5798;
+  --accent-soft: #fbf5fc;
+  --accent-border: #ebd5ef;
+  --border: #e6d8e8;
+  --primary: #6e529b;
+
+  --header-bg: #5c4384;
+  --header-text: #ffffff;
+
+  --shadow: 0 4px 20px rgba(110, 82, 155, 0.08);
+  --shadow-hover: 0 8px 26px rgba(110, 82, 155, 0.15);
+
+  --badge-franare: #b052b3;
+  --badge-motor: #2563eb;
+  --badge-suspensie: #059669;
+  --badge-caroserie: #d97706;
+
+  --error-bg: #fdf2f2;
+  --error-border: #fca5a5;
+  --error-text: #b91c1c;
+  --success-bg: #ecfdf5;
+  --success-text: #047857;
+  --warning-bg: #fffbeb;
+  --warning-text: #b45309;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+}
+
+.site-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Panouri de conținut */
+.panel {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.panel h2 {
+  margin: 0 0 16px 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Butoane */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--accent);
+  color: #2d2640;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--accent-dark);
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background-color: var(--accent-soft);
+  color: var(--text);
+  border: 1px solid var(--accent-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent);
+  border-color: var(--accent-dark);
+  color: #2d2640;
+}
+
+.btn-danger {
+  border: 1px solid #ef4444;
+  background: transparent;
+  color: #ef4444;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Theme toggle */
+.theme-toggle {
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Badges categorii și status */
+.badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.badge-franare {
+  background-color: var(--badge-franare);
+}
+
+.badge-motor {
+  background-color: var(--badge-motor);
+}
+
+.badge-suspensie {
+  background-color: var(--badge-suspensie);
+}
+
+.badge-caroserie {
+  background-color: var(--badge-caroserie);
+}
+
+.badge-success {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid currentColor;
+}
+
+.badge-warning {
+  background-color: var(--warning-bg);
+  color: var(--warning-text);
+  border: 1px solid currentColor;
+}
+
+/* Info, Empty, Error */
+.info {
+  color: var(--muted);
+  font-style: italic;
+  padding: 24px 16px;
+  text-align: center;
+  background-color: var(--accent-soft);
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+  margin: 12px 0;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 44px 20px;
+  font-style: italic;
+  background-color: var(--accent-soft);
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+  margin: 0;
+}
+
+.error {
+  color: var(--error-text);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.error p {
+  margin: 0 0 10px 0;
+}
+
+.error code {
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}

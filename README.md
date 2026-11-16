@@ -103,7 +103,7 @@ Lista este desenată integral din date, prin două componente React:
 - [x] Etapa 5: Stare locală și evenimente
 - [x] Etapa 6: Încărcarea datelor de la un mock API
 - [x] Etapa 7: Formular și validare
-- [ ] Etapa 8: Rutare și pagină de detaliu
+- [x] Etapa 8: Rutare și pagină de detaliu
 
 ### Tabel de verificare - Etapa 4
 | ID | Cerință | Unde se verifică | Cum se verifică |
@@ -173,3 +173,31 @@ Piesele pot fi adăugate direct din pagină folosind formularul controlat și va
 | S7-R6 | tw.json and the data-testid attributes from table 7.3 | tw.json, frontend/src/components/PiesaCard.jsx, frontend/src/components/PiesaForm.jsx, frontend/src/App.jsx | querySelectorAll in the console |
 | S7-R7 | README Stage 7 section + AI log | README.md, ai-log/etapa7.md | read |
 | S7-R8 | commit "Stage 7" pushed | link to the commit | commit history |
+
+---
+
+## Stage 8: routing and detail page
+Aplicația este organizată acum pe pagini folosind `react-router-dom`:
+- `/`: Pagina principală de catalog (`PiesePage`), conținând formularul de adăugare și lista de piese, cu filtre, căutare și resetare.
+- `/piese/:id`: Pagina de detaliu a piesei (`PiesaDetaliuPage`), care citește ID-ul dinamic prin `useParams()`, încarcă piesa prin `fetchPiesa(id)` și tratează erorile sau ID-urile inexistente.
+- `/despre`: Pagina de prezentare (`DesprePage`) cu detalii despre proiect și stiva tehnologică.
+- `*`: Pagină 404 (`NotFoundPage`) cu link de întoarcere la catalog.
+
+Navigația și antetul sunt incluse într-un `Layout` comun partajat folosind `<Outlet />` și `<NavLink>`.
+Stilizarea globală a fost refactorizată în fișiere CSS Modules per componentă (`*.module.css`), iar valorile fixe sunt centralizate în `src/constants.js`.
+
+### Tabel de verificare - Etapa 8
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S8-R1 | react-router-dom installed, BrowserRouter wraps App | frontend/package.json, frontend/src/main.jsx | read |
+| S8-R2 | 4 routes functional: /, /piese/:id, /despre, * | frontend/src/App.jsx | navigate to each |
+| S8-R3 | shared layout with Outlet and NavLink (marks active, end on root) | frontend/src/components/Layout.jsx | navigate, check active style |
+| S8-R4 | detail page reads :id via useParams, fetches item via fetchPiesa | frontend/src/pages/PiesaDetaliuPage.jsx, frontend/src/api.js | open /piese/1, check network |
+| S8-R5 | detail page handles nonexistent ID and has back link | frontend/src/pages/PiesaDetaliuPage.jsx | open /piese/9999, click back link |
+| S8-R6 | clicking an item title in the list opens its detail page | frontend/src/components/PiesaCard.jsx | click on item title |
+| S8-R7 | fixed options and labels stored in constants.js | frontend/src/constants.js | read |
+| S8-R8 | scoped styles via CSS Modules, App.css cleaned up | frontend/src/components/*.module.css, frontend/src/pages/*.module.css, frontend/src/index.css | inspect elements |
+| S8-R9 | all data-testid attributes from table 8.2 present | frontend/src/ | querySelectorAll in console |
+| S8-R10 | README Stage 8 section + AI log | README.md, ai-log/etapa8.md | read |
+| S8-R11 | commit "Stage 8" pushed | link to the commit | commit history |
+
