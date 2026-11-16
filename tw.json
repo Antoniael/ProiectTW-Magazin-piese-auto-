@@ -1,0 +1,6 @@
+{
+  "resource": "piese",
+  "title": "titlu",
+  "done": "inStoc",
+  "sample": { "tip": "motor" }
+}

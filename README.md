@@ -102,7 +102,8 @@ Lista este desenată integral din date, prin două componente React:
 - [x] Etapa 4: Componente construite din date
 - [x] Etapa 5: Stare locală și evenimente
 - [x] Etapa 6: Încărcarea datelor de la un mock API
-- [ ] Etapa 7: Formular și validare
+- [x] Etapa 7: Formular și validare
+- [ ] Etapa 8: Rutare și pagină de detaliu
 
 ### Tabel de verificare - Etapa 4
 | ID | Cerință | Unde se verifică | Cum se verifică |
@@ -155,3 +156,20 @@ npm run dev
 | S6-R5 | fetch only in api.js, URL from env | frontend/src/api.js, frontend/.env.example | search for fetch |
 | S6-R6 | README Stage 6 section + AI log | README.md, ai-log/etapa6.md | read |
 | S6-R7 | commit "Stage 6" pushed | link to the commit | commit history |
+
+---
+
+## Stage 7: form and validation
+Piesele pot fi adăugate direct din pagină folosind formularul controlat și validat (`PiesaForm`). Fiecare modificare (adăugare prin POST, bifare disponibilitate prin PATCH, ștergere prin DELETE) se trimite mai întâi la API înainte de a actualiza starea pe ecran, astfel încât modificările persistă la reîncărcarea paginii.
+
+### Tabel de verificare - Etapa 7
+| ID | Requirement | Where (permalink) | How to check |
+| :--- | :--- | :--- | :--- |
+| S7-R1 | controlled form: value + onChange on every field | frontend/src/components/PiesaForm.jsx | read |
+| S7-R2 | empty title shows an error, nothing is sent | frontend/src/components/PiesaForm.jsx (valideaza) | submit empty, watch Network |
+| S7-R3 | added item shows in the list and survives refresh | frontend/src/App.jsx (handleAdd), frontend/src/api.js | add, refresh |
+| S7-R4 | toggle and delete survive refresh | frontend/src/App.jsx, frontend/src/api.js | toggle/delete, refresh |
+| S7-R5 | button disabled while sending, form cleared only on success | frontend/src/components/PiesaForm.jsx | --delay 3000; stop API and submit |
+| S7-R6 | tw.json and the data-testid attributes from table 7.3 | tw.json, frontend/src/components/PiesaCard.jsx, frontend/src/components/PiesaForm.jsx, frontend/src/App.jsx | querySelectorAll in the console |
+| S7-R7 | README Stage 7 section + AI log | README.md, ai-log/etapa7.md | read |
+| S7-R8 | commit "Stage 7" pushed | link to the commit | commit history |

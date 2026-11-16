@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PiesaList from "./components/PiesaList.jsx";
-import { fetchPiese } from "./api.js";
+import PiesaForm from "./components/PiesaForm.jsx";
+import { createPiesa, deletePiesa, fetchPiese, updatePiesa } from "./api.js";
 
 // Citirea temei sistemului de operare la prima încărcare
 function temaInitiala() {
@@ -39,16 +40,31 @@ export default function App() {
     document.documentElement.dataset.theme = tema;
   }, [tema]);
 
-  // Funcție imutabilă pentru comutarea disponibilității (în stoc)
-  function handleToggleStoc(id) {
-    setPiese((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, inStoc: !p.inStoc } : p))
-    );
+  // Întâi serverul, apoi state-ul: pe ecran ajunge doar ce s-a salvat
+  async function handleAdd(piesa) {
+    const creat = await createPiesa(piesa);
+    setPiese((prev) => [...prev, creat]);
   }
 
-  // Funcție imutabilă pentru ștergerea unei piese
-  function handleDelete(id) {
-    setPiese((prev) => prev.filter((p) => p.id !== id));
+  // Bifarea pe server cu PATCH
+  async function handleToggleStoc(id) {
+    const piesa = piese.find((p) => p.id === id);
+    try {
+      const actualizat = await updatePiesa(id, { inStoc: !piesa.inStoc });
+      setPiese((prev) => prev.map((p) => (p.id === id ? actualizat : p)));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  // Ștergerea de pe server cu DELETE
+  async function handleDelete(id) {
+    try {
+      await deletePiesa(id);
+      setPiese((prev) => prev.filter((p) => p.id !== id));
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   // Comutarea temei luminoasă/întunecată
@@ -251,8 +267,13 @@ export default function App() {
         </div>
       </section>
 
-      {/* 5. Conținutul principal: Catalogul de piese */}
+      {/* 5. Conținutul principal: Formular stânga, Catalog dreapta */}
       <main className="container">
+        <section className="panel">
+          <h2>Adaugă piesă</h2>
+          <PiesaForm onAdd={handleAdd} />
+        </section>
+
         <section className="panel">
           <div className="panel-header">
             <div>
@@ -289,11 +310,16 @@ export default function App() {
             </div>
           )}
 
-          {loading && <p className="info">Se încarcă catalogul de piese...</p>}
+          {loading && (
+            <p className="info" data-testid="loading">
+              Se încarcă catalogul de piese...
+            </p>
+          )}
+
           {error && (
-            <div className="error">
+            <div className="error" data-testid="error">
               <p>
-                Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+                Nu am putut efectua operațiunea: {error}. Rulează <code>npm run api</code>?
               </p>
               <button
                 type="button"
@@ -304,7 +330,8 @@ export default function App() {
               </button>
             </div>
           )}
-          {!loading && !error && (
+
+          {!loading && (
             <PiesaList
               piese={pieseAfisate}
               onToggle={handleToggleStoc}

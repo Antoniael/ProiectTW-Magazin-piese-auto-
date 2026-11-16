@@ -14,7 +14,11 @@ const ICONS_TIP = {
 
 export default function PiesaCard({ piesa, onToggle, onDelete }) {
   return (
-    <li className={!piesa.inStoc ? "item-card done" : "item-card"}>
+    <li
+      className={!piesa.inStoc ? "item-card done" : "item-card"}
+      data-testid="item"
+      data-id={piesa.id}
+    >
       <div className="card-thumb">
         <span className="part-icon">{ICONS_TIP[piesa.tip] || "🔧"}</span>
       </div>
@@ -26,12 +30,14 @@ export default function PiesaCard({ piesa, onToggle, onDelete }) {
           </span>
           <span className="part-code">COD: AP-00{piesa.id}</span>
         </div>
-        
-        <h3 className="part-title">{piesa.titlu}</h3>
-        
+
+        <h3 className="part-title" data-testid="item-title">
+          {piesa.titlu}
+        </h3>
+
         <div className="card-status-row">
           <span className={piesa.inStoc ? "stock-tag in-stock" : "stock-tag out-of-stock"}>
-            {piesa.inStoc ? "● În stoc (Livrare 24-48h)" : "○ Indisponibil momentan"}
+            {piesa.inStoc ? "● În stoc" : "○ Indisponibil"}
           </span>
         </div>
       </div>
@@ -42,15 +48,17 @@ export default function PiesaCard({ piesa, onToggle, onDelete }) {
             type="checkbox"
             checked={piesa.inStoc}
             onChange={() => onToggle(piesa.id)}
+            data-testid="item-toggle"
           />
           <span className="stock-label">În stoc</span>
         </label>
-        
+
         <button
           className="btn-danger"
           onClick={() => onDelete(piesa.id)}
           aria-label={`Șterge ${piesa.titlu}`}
           title="Șterge piesa din catalog"
+          data-testid="item-delete"
         >
           🗑️ Șterge
         </button>
@@ -58,4 +66,3 @@ export default function PiesaCard({ piesa, onToggle, onDelete }) {
     </li>
   );
 }
-
